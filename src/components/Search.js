@@ -22,10 +22,10 @@ class Search extends Component {
   }
 
   submitSearch() {
-    if(this.state.search === '' || this.state.search === undefined) {
+    if(this.state.search.trim() === '' || this.state.search === undefined) {
       return this.setState({ searchResults: [] });
     }
-    BooksAPI.search(this.state.search.trim()).then(response => {
+    BooksAPI.search(this.state.search).then(response => {
       if(response.error) {
         return this.setState({ searchResults: [] });
       }else{
@@ -49,7 +49,7 @@ class Search extends Component {
   }
 
   updateSearch = (search) => {
-    this.setState({search: search.trim()}, this.submitSearch);
+    this.setState({search: search}, this.submitSearch);
   }
 
   render() {
